@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Classification Result</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background: linear-gradient(to right, #be89f6, #9bbcf5);
+            font-family: 'Arial', sans-serif;
+        }
+        .container {
+            margin-top: 50px;
+            max-width: 600px;
+        }
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        .card-header {
+            background-color: #28a745;
+            color: white;
+            border-radius: 10px 10px 0 0;
+        }
+        .btn-success {
+            background-color: #28a745;
+            border: none;
+        }
+        .btn-success:hover {
+            background-color: #218838;
+        }
+        .footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #777;
+        }
+        .list-group-item {
+            font-size: 1.2rem;
+        }
+        img {
+            max-height: 300px;
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-header text-center">
+                <h2>Classification Result</h2>
+            </div>
+            <div class="card-body text-center">
+                <img src="{{ url_for('uploaded_file', filename=filename) }}" alt="Uploaded Image" class="img-fluid mb-3">
+                <ul class="list-group">
+                    {% for prediction in predictions %}
+                        <li class="list-group-item">{{ prediction[1] }}: {{ prediction[2] * 100 | round(2) }}%</li>
+                    {% endfor %}
+                </ul>
+                <a href="{{ url_for('upload_file') }}" class="btn btn-success btn-block mt-3">Upload Another Image</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <p>&copy; 2024 Image Classification App</p>
+    </div>
+</body>
+</html>
